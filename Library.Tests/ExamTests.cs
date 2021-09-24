@@ -9,22 +9,20 @@ namespace Library.Tests
     {
         [Fact]
         public void Test1()
-        {   
+        {
             //Tests for passing in a roster of students
-            List<string> roster = new List<string>(){"Bob", "Sally", "Jake"};
+            List<string> roster = new List<string>() { "Bob", "Sally", "Jake" };
             Exam test = new Exam(roster);
             test.ExamGrades.Should().HaveCount(3);
         }
 
         [Fact]
         public void Test2()
-        {   
+        {
             //Test to check names of students 
-            List<string> roster = new List<string>(){"Bob", "Sally", "Jake"};
+            List<string> roster = new List<string>() { "Bob", "Sally", "Jake" };
             Exam test = new Exam(roster);
-            test.ExamGrades.Should().Contain("Sally",69);
-         
-
+            test.ExamGrades.Should().Contain("Sally", 69);
         }
     }
 }

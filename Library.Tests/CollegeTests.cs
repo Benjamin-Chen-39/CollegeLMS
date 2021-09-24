@@ -12,11 +12,11 @@ namespace Library.Tests
     {
         [Fact]
         public void Test1()
-        {   
+        {
             //Tests for correct data from api*
             College college = new College();
             college.CourseNames.Should().HaveCount(16);
-            college.CourseNames.Should().Contain( "Calculus",
+            college.CourseNames.Should().Contain("Calculus",
                 "Linear Algebra",
                 "Probability",
                 "Statistics",
@@ -33,9 +33,6 @@ namespace Library.Tests
                 "Philosophy",
                 "World History");
             college.Courses.Should().NotBeEmpty().And.HaveCount(16);
-          
         }
-
-      
     }
 }
