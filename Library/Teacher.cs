@@ -13,7 +13,6 @@ namespace Library
         }
         public override string ToString() => $"{Name}";
 
-
         public void AddExam(Course course)
         {
             course.Exams.Add(new Exam(course.Roster));

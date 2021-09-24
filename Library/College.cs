@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-
     public class College
     {
         public List<Course> Courses;
@@ -29,7 +28,6 @@ namespace Library
             var CourseNames = await client.GetFromJsonAsync<List<string>>("https://raw.githubusercontent.com/chyld/datasets/main/subjects.json");
             return CourseNames;
         }
-
 
         //needs refactoring to use pattern matching
         public Course GetCourse(string coursename)
