@@ -26,9 +26,24 @@ namespace Library
 
         public decimal GetStudentAverage(List<Exam> examList, string studentName)
         {
-            decimal total = 0;
-            examList.ForEach(exam => total += exam.ExamGrades[studentName]);
-            return decimal.Divide(total, Convert.ToDecimal(examList.Count()));
+            decimal studentAverage = 0;
+            examList.ForEach(exam => studentAverage += exam.ExamGrades[studentName]);
+            return decimal.Divide(studentAverage, Convert.ToDecimal(examList.Count()));
+        }
+
+        public decimal GetCourseAverage(List<Exam> examList)
+        {
+            List<int> allGrades = new List<int>();
+            examList.ForEach(exam => allGrades.AddRange(exam.ExamGrades.Values.ToList()));
+            return Convert.ToDecimal(allGrades.Sum() / allGrades.Count());
+        }
+
+        public decimal GetCourseMedian(List<Exam> examList)
+        {
+            List<int> allGrades = new List<int>();
+            examList.ForEach(exam => allGrades.AddRange(exam.ExamGrades.Values.ToList()));
+            allGrades.OrderBy(grades => grades);
+            return allGrades[allGrades.Count / 2];
         }
     }
 

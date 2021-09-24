@@ -61,8 +61,54 @@ namespace Library.Tests
             TestTeacher.GradeExam(TestCourse.Exams[1], TestStudent, 100);
             TestTeacher.GradeExam(TestCourse.Exams[2], TestStudent, 37);
             TestTeacher.GetStudentAverage(TestCourse.Exams, TestStudent).Should().Be(Convert.ToDecimal(69));
-
         }
+
+        [Fact]
+        public void Test5()
+        {
+            //Teacher should get average score for entire class
+            TestTeacher.AddExam(TestCourse);
+            TestTeacher.AddExam(TestCourse);
+            TestTeacher.AddExam(TestCourse);
+            // fake input
+            string TestStudent = "Test Student";
+            string TestStwodent = "Test Stwodent";
+
+            TestCourse.Roster.Add("Test Stwodent");
+
+            TestTeacher.GradeExam(TestCourse.Exams[0], TestStudent, 92);
+            TestTeacher.GradeExam(TestCourse.Exams[1], TestStudent, 100);
+            TestTeacher.GradeExam(TestCourse.Exams[2], TestStudent, 98);
+
+            TestTeacher.GradeExam(TestCourse.Exams[0], TestStwodent, 50);
+            TestTeacher.GradeExam(TestCourse.Exams[1], TestStwodent, 90);
+            TestTeacher.GradeExam(TestCourse.Exams[2], TestStwodent, 80);
+            TestTeacher.GetCourseAverage(TestCourse.Exams).Should().Be(Convert.ToDecimal(85));
+        }
+
+        public void Test6()
+        {
+            //Teacher should get median score
+            TestTeacher.AddExam(TestCourse);
+            TestTeacher.AddExam(TestCourse);
+            TestTeacher.AddExam(TestCourse);
+            // fake input
+            string TestStudent = "Test Student";
+            string TestStwodent = "Test Stwodent";
+
+            TestCourse.Roster.Add("Test Stwodent");
+
+            TestTeacher.GradeExam(TestCourse.Exams[0], TestStudent, 92);
+            TestTeacher.GradeExam(TestCourse.Exams[1], TestStudent, 100);
+            TestTeacher.GradeExam(TestCourse.Exams[2], TestStudent, 98);
+
+            TestTeacher.GradeExam(TestCourse.Exams[0], TestStwodent, 50);
+            TestTeacher.GradeExam(TestCourse.Exams[1], TestStwodent, 90);
+            TestTeacher.GradeExam(TestCourse.Exams[2], TestStwodent, 80);
+            TestTeacher.GetCourseMedian(TestCourse.Exams).Should().Be(Convert.ToDecimal(92));
+        }
+
+
     }
 }
 
