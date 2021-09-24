@@ -6,31 +6,42 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    
-    public class College 
+
+    public class College
     {
         public List<Course> Courses;
         public List<Teacher> Teachers;
         public List<String> CourseNames;
 
-        public College ()
+        public College()
         {
             this.Teachers = new List<Teacher>();
-            this.Courses = new List<Course>(); 
+            this.Courses = new List<Course>();
             this.CourseNames = GetDataFromHttp().GetAwaiter().GetResult();
-            foreach(var c in CourseNames)
-            this.Courses.Add(new Course(c));
-         
+            foreach (var c in CourseNames)
+                this.Courses.Add(new Course(c));
+
         }
 
-          public static async Task<List<string>> GetDataFromHttp()
+        public static async Task<List<string>> GetDataFromHttp()
         {
-                var client = new HttpClient();
-                var CourseNames = await client.GetFromJsonAsync<List<string>>("https://raw.githubusercontent.com/chyld/datasets/main/subjects.json");
-                return CourseNames;
+            var client = new HttpClient();
+            var CourseNames = await client.GetFromJsonAsync<List<string>>("https://raw.githubusercontent.com/chyld/datasets/main/subjects.json");
+            return CourseNames;
         }
 
+
+        //needs refactoring to use pattern matching
+        public Course GetCourse(string coursename)
+        {
+            foreach (var course in this.Courses)
+            {
+                if (course.Name == coursename)
+                    return course;
+            }
+            return new Course("Default Course name");
+        }
     }
 
-   
+
 }

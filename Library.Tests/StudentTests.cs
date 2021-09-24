@@ -9,14 +9,11 @@ namespace Library.Tests
     {
         [Fact]
         public void Test1()
-        {   
+        {
             //Tests for correct instantiation
             Student student = new Student("Bob");
             student.Should().NotBeNull();
             student.Name.Should().Be("Bob");
-            
-            
         }
-
     }
 }
