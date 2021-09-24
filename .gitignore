@@ -1,0 +1,7 @@
+.vscode
+/Application/bin
+/Application/obj
+/Library/bin
+/Library/obj
+/Library.Tests/bin
+/Library.Tests/obj
